@@ -27,6 +27,11 @@ export const useForm = (initialForm = {}, formValidations = {}) => {
         createValidators();
     }, [formState]);
 
+    // if the initial form data changes update the form
+    useEffect(() => {
+      setFormState(initialForm);
+    }, [initialForm])
+
     // Determine if the form is valid. The form is valid if all fields are valid.
     const isFormValid = useMemo(() => {
         for (const formValue of Object.keys(formValidation)) {
